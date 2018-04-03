@@ -1,0 +1,20 @@
+/* CSS Document */
+a{color:#333;text-decoration:none;}
+a:hover{color:#c00; text-decoration:underline;}
+.area{height:252px; width:425px;  overflow:hidden; position:relative; cursor:pointer;margin-top: 2px;
+}
+.js{POSITION: relative; WIDTH:425px; HEIGHT: 252px;margin:0 auto;
+}
+.prevBtn{BACKGROUND:url(../images/btn01.jpg) no-repeat;HEIGHT:47px; WIDTH: 32px; display:block; position:absolute; top:120px;}
+.prevBtn:hover{BACKGROUND:url(../images/btn01.jpg) no-repeat;}
+.nextBtn {BACKGROUND:url(../images/btn02.jpg) no-repeat;HEIGHT:47px; WIDTH: 32px; display:block; position:absolute; right:0; top:120px;}
+.nextBtn:hover{BACKGROUND:url(../images/btn02.jpg) no-repeat;}
+.imgSelected {BACKGROUND: url(../images/jsNav.png) no-repeat;}
+.bg{ width:425px; padding-top:2px; background:url(../images/bg01.png) no-repeat;_background:none;/*IE6*/
+_filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(enabled='true', sizingMethod='scale', src="images/bg01.png");/*IE6*/
+height:34px; left:0; FONT-WEIGHT: bold; top:222px; position:absolute;}
+.jsNav{ position:absolute; left:120px; top:222px;}
+.jsNav a{width:40px; font-size:14px; margin-right:6px; display:inline; height:33px; line-height:33px; display:block;float:left; text-align:center; color:#fff;}
+.jsNav a:hover{background:url(../images/bg01.gif) no-repeat;color: #FF1555; text-decoration:none;}
+.jsNav .imgSelected { background:url(../images/bg01.gif) no-repeat;color: #FF1555;}
+.qq{display:marker; z-index:200}

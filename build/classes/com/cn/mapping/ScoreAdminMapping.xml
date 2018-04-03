@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+		PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.ScoreAdminMapping">
+    <insert id="insertOne">
+    insert into score(year,xueqi,time,outtime)
+     values(#{year},#{xueqi},#{date2},now())
+    </insert>
+    
+   <select id="getRec" resultType="ScoreAdmin">
+   select * from score   order by cid  desc limit 1
+   </select>
+   
+   <select id="getTime" resultType="java.util.Date">
+    select time from score  order by outtime desc limit 1
+   </select>
+   
+   <select id="getAll" resultType="ScoreAdmin">
+   select  * from score order by cid
+   </select>
+   
+   <select id="SureNoDouble" resultType="java.lang.Integer">
+   select cid from score where xueqi=#{xueqi} and year=#{year}
+   </select>
+	</mapper>

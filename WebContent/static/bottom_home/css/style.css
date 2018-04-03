@@ -1,0 +1,45 @@
+/*
+Theme Name: Vanilla Slice
+Description:  Themed developed in July 2011, new clean and simplified layout.
+Author: Tim Keay, Miroslav Kosteckij
+Version: 1.0
+*/
+
+/*
+=============================
+  C O R E   E L E M E N T S
+=============================
+*/
+
+/*
+===============
+  F O O T E R
+===============
+*/
+#fixed-footer-wrap { width: 100%; height: 50px; background: #e8e8e8; border-top: solid 1px #CCC; position: fixed; bottom: 0px; z-index: 3; overflow: visible; }
+#footer-wrap { position: relative; height: 0px; }
+#footer { width: 100%; position: absolute; left: 0px; bottom: 0px; background: #e8e8e8; border: solid 1px #CCC; border-top:0px; }
+#fixed-footer { width: 950px; margin: 0 auto; padding-top: 15px;}
+#footer-toggle { display: block; border: solid 1px #CCC; border-bottom: 0px; width: 38px; height: 21px; position: absolute; top: -22px; right: 2%;  background: #e8e8e8; /*left: 50%; margin-left: 429px;*/ }
+#footer-toggle span { display: block; width: 38px; height: 21px; background: url(../images/footer-toggle.png); opacity: 0.7; }
+#footer-toggle span:hover { opacity: 1 }
+#footer-toggle.expanded span { background-position: bottom; }
+#toggling { display: none; }
+#toggling h3 { width: 950px; margin: 0 auto; padding: 20px 0; line-height: 150%;}
+/* Footer Toggle */
+.border-top {
+    border-top: 1px solid #CCCCCC;
+}
+/* Footer Top */
+#footer-top { padding: 15px 0; }
+#footer-top a { color: #222; text-decoration: none; }
+#footer-top a:hover { color: #FF6600; }
+#footer-social { float: left; clear: left; }
+#footer-social iframe { width: 61px !important; float: left; display: inline-block;  }
+#footer-social ul { overflow: hidden; }
+#footer-social li { float: left; margin-right: 20px; }
+#footer-social li.no-margin { margin-right: 0px; }
+
+/* iOS fixes */
+#fixed-footer-wrap.mobile-fix { position: relative; }
+

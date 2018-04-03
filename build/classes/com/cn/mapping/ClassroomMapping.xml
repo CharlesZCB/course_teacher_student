@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.ClassroomMapping">
+	<!-- 本类的某些属性 -->
+	<resultMap type="com.cn.bean.Classroom" id="Classrooms">
+	<id column="id" property="id"/>
+    <result column="snum" property="snum"/>
+	<result column="name" property="name"/>
+	<result column="jibie" property="jibie"/>
+	<result column="id" property="id"/>
+	<result column="t_name" property="t_name"/>
+	<result column="banhao" property="banhao"/>
+	<!-- 包含教师的信息 -->
+	<association property="teacher" javaType="com.cn.bean.Teacher">
+	<result column="tcode" property="tcode"/>
+	<result column="tname" property="tname"/>
+	</association>
+	<!-- 包含学生的信息 -->
+	<association property="user" javaType="com.cn.bean.User">
+	<result column="s_banhao" property="banhao"/>
+	</association>
+	</resultMap>
+	
+
+	
+	<!-- 查询教师所对应的班级的所有信息（包含教师） -->
+	<select id="getAll" resultMap="Classrooms">
+	 select * from classroom <!-- where -->
+	<!--  classroom.tcode=teacher.tcode --> 
+	</select>
+	<!-- 根据学生的班级号查找每个班级有多少人 -->
+	<select id="getSNum" resultType="java.lang.String">
+	select  count(s_id)
+                from classroom t 
+                left join user tt on t.banhao=tt.s_banhao
+                group by t.banhao desc 
+	</select>
+
+	
+
+       
+       <delete id="deletes">
+       delete from classroom where id=#{id}
+       </delete>
+       
+       <select id="getallTeachername" resultType="Object">
+       select tname from teacher
+       </select>
+       
+       <insert id="insertclass">
+       <!-- jibie, String classname, String daoyuan, int num) -->
+       insert into classroom(jibie,t_name,name,banhao,tcode)
+       values(#{jibie},#{daoyuan},#{classname},#{num},#{tcode})
+       </insert>
+       
+       <select id="getTeBYId" resultType="java.lang.String">
+       select jibie from classroom where id=#{id}
+       </select>
+       
+       <select id="getClassRoomById" resultType="java.lang.String">
+       select name from classroom where id=#{id}
+       </select>
+       
+       <update id="UpdateByDaoyuan">
+       update classroom set t_name=#{tname},tcode=#{daoyuan} where banhao=#{cnum}
+       </update>
+       
+       <select id="getCode" resultType="java.lang.Integer">
+       select banhao from classroom where id=#{id}
+       </select>
+   
+    <update id="insertNum">
+    update classroom set snum=#{parseInt} where banhao=#{i}
+    </update>
+    
+    <select id="getAllBanhao" resultType="java.lang.String">
+     select banhao from classroom order by banhao desc
+    </select>
+    
+  <select id="getClassById" resultType="Classroom">
+  select * from classroom where id=#{id}
+  </select>
+    
+    <select id="getClassNameByBanhao" resultType="java.lang.String">
+     select name from classroom where banhao=#{ban1}
+    </select>
+    <select id="getJibieByBanhao" resultType="java.lang.String">
+    select jibie from classroom where banhao=#{ban2}
+    
+    </select>
+    
+    <select id="getJibieNoDistinct" resultType="Classroom">
+    select distinct jibie from classroom 
+    </select>
+    
+    <select id="getNameByjibie" resultType="java.lang.String">
+    select name from classroom where jibie=#{jibie}
+    </select>
+    
+    <select id="getBanhaoByNameJibie" resultType="java.lang.Integer">
+    select banhao from classroom where name=#{banming} and jibie=#{jibie}
+    </select>
+    <select id="getClassRoomsById" resultType="Classroom">
+    select * from classroom where banhao=#{integer}
+    </select>
+    
+    <select id="getClassByTcode" resultType="Classroom">
+    select * from classroom where tcode=#{tcode} 
+    </select>
+    
+    <select id="getClassBYCode" resultType="Classroom">
+    select * from classroom where banhao=#{integer}
+    </select>
+    
+    <select id="getBanhaoById" resultType="java.lang.Integer">
+    select banhao from classroom where id=#{id}
+    </select>
+    
+    <select id="getSnumByBanhao" resultType="java.lang.Integer">
+    select snum from classroom where banhao=#{banhao}
+    </select>
+    
+    <update id="updateSnumBybanhao">
+    update classroom set snum=#{snum} where banhao=#{banhao}
+    </update>
+    
+    <select id="getBahaoByTcode" resultType="java.lang.Integer">
+    select banhao from classroom where tcode=#{tcode}
+    </select>
+ 
+ <update id="UpdateTnameByTcode">
+ update classroom set t_name=#{tname} where tcode=#{tcode}
+ </update>   
+ 
+ <select id="getAllByJibie" resultType="Classroom">
+ select * from classroom where jibie=#{jibie}
+ </select>
+ 
+ <select id="getIdBycode" resultType="java.lang.Integer">
+ select id from classroom where banhao=#{integer}
+ </select>
+ 
+	</mapper>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.TipMapping">
+	
+	
+	<insert id="insertOne">
+	insert into tip(tid,cname,banming,banhao,biaoji,time)
+	values(#{tid},#{cname},#{banming},#{banhao},0,now())
+	</insert>
+	
+	<select id="getMessageByTid" resultType="com.cn.bean.Tip">
+	select * from tip where tid=#{tid}  order by time desc
+	</select>
+	
+	
+	<update id="updateStatueByid">
+	update tip set biaoji=1 where id=#{id}
+	</update>
+	
+	<delete id="delete">
+	delete from tip where id=#{id}
+	</delete>
+	
+	</mapper>
+	
+	

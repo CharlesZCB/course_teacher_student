@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.NewsMapping">
+	
+	    <select id="getalls" resultType="News">
+	      SELECT * FROM news order by id desc
+	    </select>
+  
+        <insert id="addone">
+        insert into news(title,content,editor,editdate,showoff,image,imageaddress,timechange)
+        values(#{title},#{content},#{editor},now(),#{state},#{image},#{imageaddress},now())
+        </insert>
+        
+        
+        <delete id="deleted">
+        delete from news where id=#{id}
+        </delete>
+        
+        <select id="selectById" resultType="News"> 
+        select * from news where id=#{id}
+        </select>
+       
+       <select id="getStatueById" resultType="java.lang.Integer">
+       select showoff from news where id=#{ids}
+       </select>
+       
+       
+       <update id="chageStatueById">
+       update news set showoff=#{changeStatue}
+       where id=#{id}
+       </update>
+       
+       <select id="getNewsFive" resultType="News">
+        select * from news where showoff=1 order by timechange desc limit 5 
+       </select>
+       
+       
+       <update id="insertTime">
+       update news set timechange =#{time1} where id=#{ids}
+       </update>
+       
+       <select id="getNewsById" resultType="News">
+       select * from news where id=#{id}
+       </select>
+	</mapper>

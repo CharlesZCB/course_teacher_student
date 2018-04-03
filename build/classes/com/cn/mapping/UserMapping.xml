@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.UserMapping">
+	<resultMap type="com.cn.bean.User" id="UserRoom">
+	<id     column="s_id"     property="id"/>
+	<id     column="s_ident"     property="ident"/>
+	<result column="s_name"   property="name"/>
+	<result column="s_sex"   property="sex"/>
+	<result column="s_birth"  property="birth"/>
+	<result column="s_password" property="password"/>
+	<result column="s_email" property="email"/>
+	<result column="s_head" property="head"/>
+	<result column="s_code" property="scode"/>
+	<result column="s_filename" property="filename"/>
+    <result column="s_banhao"  property="banhao"/>
+    <result column="s_county"   property="s_county"/>
+	<result column="s_province" property="s_province"/>
+	<result column="s_city"     property="s_city"/>
+    <result column="s_banhao" property="banhao"/>
+    <result column="s_banming" property="banming"/>
+    <result column="s_nianji" property="nianji"/>
+	<association property="classroom" javaType="com.cn.bean.Classroom">
+	<result column="jibie" property="jibie"/>
+	<result column="name" property="name"/>	
+	<result column="banhao" property="banhao"/>
+	</association>
+	</resultMap>
+	
+	<!-- 获取所有的数据库值 --> 
+	    <select id="list" resultMap="UserRoom">
+	    select * from user,classroom
+	    where user.s_banhao=classroom.banhao order by s_id asc
+	    </select>
+  
+         <select id="getItem" parameterType="java.lang.Integer" resultMap="UserRoom">
+          select * from user where s_id=#{id}
+         </select>
+         
+          <delete id="delete">
+          delete from user where s_id = #{id}
+         </delete> 
+         
+         <update id="Update">
+         update user set s_name=#{name},s_banming=#{banming},
+         s_email=#{email},s_banhao=#{banhao},s_nianji=#{jibie}
+         where s_id=#{id}
+         </update>
+         
+        <insert id="insertUser">
+         insert into user (s_name,s_password,s_email,s_birth,s_head,s_filename,s_county,s_province,s_city,s_code,s_nianji,s_banming,s_banhao,s_sex,s_ident)
+         values (#{name},#{password},#{email},#{birth},#{head},#{filename},#{s_county},#{s_province},#{s_city},#{scode},#{jibie},#{enge},#{bannum},
+         #{sex},#{ident})
+        </insert>
+        
+        <select id="getAllclassroom" resultType="Classroom">
+        select *from classroom
+        </select>
+        
+        <select id="getAllByclassId"  resultMap="UserRoom">
+        select * from user where s_banhao=#{id} order by s_code
+        </select>
+        
+        
+        <select id="getNameById" resultType="java.lang.String">
+        select s_name from user where s_id=#{binder}
+        </select>
+        <select id="getScodeByID" resultType="java.lang.String">
+        select s_code from user where s_id=#{binder}
+        </select>
+        <select id="getEmailById" resultType="java.lang.String">
+        select s_email from user where s_id=#{binder}
+        </select>
+        <select id="getBirthById" resultType="java.lang.String">
+        select s_birth from user where s_id=#{binder}
+        </select>
+        
+        <select id="getBanmingById" resultType="java.lang.String">
+        select s_banming from user where s_id=#{binder}
+        </select>
+        
+        <select id="getNianjiByID" resultType="java.lang.String">
+        select s_nianji from user where s_id=#{binder}
+        </select>
+        
+        <select id="getBanhaoById" resultType="java.lang.Integer">
+        select s_banhao from user where s_id=#{binder}
+        </select>
+        <select id="getNameByCodeu" resultType="java.lang.String">
+        select s_name from user where s_code=#{uid}
+        </select>
+        
+        <select id="getNameByCodeAndPass" resultType="java.lang.String">
+        select s_name from user where s_code=#{scode} and s_password=#{password}
+        </select>
+        
+        <select id="getIdByNameAndpass" resultType="java.lang.Integer">
+        select s_id from user where s_code=#{scode} and s_password=#{password}
+        </select>
+        
+        <select id="getSexById" resultType="java.lang.String">
+        select s_sex from user where s_id=#{id}
+        </select>
+        
+        <select id="getBirthsById" resultType="java.util.Date">
+        select s_birth from user where s_id=#{id}
+        </select>
+        <select id="getPasswordById" resultType="java.lang.String">
+        select s_password from user where s_id=#{id}
+        </select>
+        
+        <select id="getImageById" resultType="java.lang.String">
+        select s_filename from user where s_id=#{id}
+        </select>
+        
+        <select id="getProvinceById" resultType="java.lang.String">
+        select s_province from user where s_id=#{id}
+        </select>
+        
+        <select id="getCountyById" resultType="java.lang.String">
+        select s_county from user where s_id=#{id}
+        </select>
+        
+        <select id="getCityById" resultType="java.lang.String">
+        select s_city from user where s_id=#{id}
+        </select>
+        
+        <update id="UpdatePassById">
+        update user set s_password=#{password} where s_id=#{id}
+        </update>
+
+        <select id="getStuBybanhao" resultMap="UserRoom">
+        select * from user where s_banhao=#{banhao}
+        </select>
+
+       <select id="getSubCode" resultType="java.lang.Integer">
+        select count(*) from user where s_banhao=#{banhao}
+       </select>
+       
+       <!-- 统计获取每个班 的人数-->
+       <select id="getSnumBybcode" resultType="java.lang.Integer">
+       select count(s_banhao) from user where s_banhao = #{integer}
+       </select>
+       <select id="getJIbieByUid" resultType="java.lang.String">
+       select s_nianji from user where s_id=#{stuid}
+       </select>
+       
+       <select id="getAllByBanhao" resultMap="UserRoom" parameterType="java.lang.Integer">
+       select * from user,classroom where s_banhao=#{banhao} order by s_id asc
+       </select>
+       
+       <select id="getIdByscodeIdent" resultType="java.lang.Integer">
+       select s_id from user where s_ident=#{ident} and s_code=#{scode}
+       </select>
+       
+       <select id="getIdByscode" resultType="java.lang.Integer">
+        select s_id from user where s_code=#{scode}
+       </select>
+	</mapper>

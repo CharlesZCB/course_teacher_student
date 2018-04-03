@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.VideoMapping">
+	<select id="getAll" resultType="Video">
+	select * from video
+	</select>
+	<!-- filename 指的是图片的名字  pic指的是图片的地址 -->
+	<insert id="addOne">
+	insert into video(name,introduce,datetime,personname,realpath,image,pic,videoname,size)
+	values(#{name},#{introduce},now(),#{personname},#{realpath},#{picname},
+	#{filename},#{videoname},#{size})
+	</insert>
+	
+	<delete id="deleteById">
+	delete from video where id=#{ids}
+	</delete>
+	
+	<select id="getOneBytime" resultType="Video">
+	select * from video order by datetime desc limit 1 
+	</select>
+	</mapper>

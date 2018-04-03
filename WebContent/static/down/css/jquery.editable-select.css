@@ -1,0 +1,43 @@
+input.editable-select {
+  background: #FFF url(arrow-down.gif) right center no-repeat;
+  border: 1px solid #CCC;
+  border-radius:3;
+  padding: 8px 8px 8px 4px;
+  margin: 10px;
+}
+.editable-select-options {
+ 
+  display: none;
+  overflow: auto;
+  margin: 4px;
+  padding: 4px;
+  background: #FFF;
+  border: 1px solid #CCC;
+  height:5px;
+  z-index: 10px;
+  
+}
+.editable-select-iframe {
+  position: absolute;
+  background: #FFF;
+  z-index: 9px;
+  display: none;
+  
+}
+  .editable-select-options ul {
+    margin: 10px;
+    padding: 10px;
+    z-index: 10px;
+    list-style: none;
+    list-style-image: none;
+  }
+    .editable-select-options li {
+      cursor: default;
+      padding: 10px 10px;
+      list-style: none;
+    }
+    .editable-select-options li.selected {
+      background: blue;
+      color:#fff;
+      list-style: none;
+    }

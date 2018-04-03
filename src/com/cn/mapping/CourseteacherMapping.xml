@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.CourseteacherMapping">
+   <select id="getTeachersList" resultType="java.lang.Integer">
+   select distinct tid from teachercourse where cid=#{ids}
+   </select>
+
+   <insert id="insertOne">
+   insert into teachercourse(tid,cid,bid,ctime,tname,cname,week,jie,classname) values(#{tc},#{cid},#{bid}
+   ,#{ctime},#{tname},#{cname},#{week},#{jie},#{banming})
+   </insert>
+
+
+<select id="getAll" resultType="Courseteacher">
+select * from teachercourse
+</select>
+
+<select id="getTeacherIdIs" resultType="Courseteacher">
+select * from teachercourse where(cid=#{cid} and bid=#{ban1})
+</select>
+
+<select id="getAllTeacherId" resultType="java.lang.Integer">
+select distinct tid from teachercourse 
+</select>
+
+<select id="getCourseIdById" resultType="java.lang.Integer">
+select  distinct cid from teachercourse where tid=#{id}
+</select>
+
+<select id="getroomIdById" resultType="java.lang.Integer">
+select bid from teachercourse where tid=#{id}
+</select>
+
+<select id="getBanjisByTidCid" resultType="java.lang.Integer">
+select bid from teachercourse where tid=#{tid} and cid=#{cid} group by bid
+</select>
+
+
+<select id="getCidByBanhao" resultType="java.lang.Integer">
+select cid from teachercourse where bid=#{banhao}
+</select>
+<select id="getTidByBanhao" resultType="java.lang.Integer">
+select tid from teachercourse where bid=#{banhao}
+</select>
+
+<select id="getAllBybanhao" resultType="Courseteacher">
+ select * from teachercourse where bid=#{banhao} group by cname
+</select>
+
+<delete id="deleteteacourseBytid">
+delete  from teachercourse where tid=#{id}
+</delete>
+<delete id="deleteCourseByCid">
+delete from teachercourse where cid=#{id}
+</delete>
+
+<select id="getIdByWeekjieTc" resultType="java.lang.Integer">
+select id from teachercourse where week=#{week} and jie=#{jie} and tid=#{tc}
+</select>
+
+<select id="getAllByTid" resultType="Courseteacher">
+select * from teachercourse where tid=#{tid}
+</select>
+<select id="getAllBybanhao1" resultType="Courseteacher">
+ select * from teachercourse where bid=#{banhao}
+</select>
+
+<select id="getIdByWeekAndJie" resultType="java.lang.Integer">
+select id from teachercourse where week=#{week} and jie=#{jie} and bid=#{ban1}
+</select>
+
+<select id="getAllByTidAndCid" resultType="Courseteacher">
+select * from teachercourse where tid=#{tid} and cid=#{integer}
+</select>
+
+<select id="getIdByTidCId" resultType="java.lang.Integer">
+select id from teachercourse where tid=#{tid} and cid=#{cident}
+</select>
+
+<select id="getAllById" resultType="Courseteacher">
+select * from teachercourse where id=#{integer}
+</select>
+
+<select id="getAllByBcodeCid" resultType="Courseteacher">
+select * from teachercourse where cid=#{integer} and bid=#{banhao}
+</select>
+
+<select id="getTidByCid" resultType="java.lang.Integer">
+select tid from teachercourse where cid=#{cid}
+</select>
+
+<select id="getBcodeByTidCid" resultType="java.lang.Integer">
+select bid from teachercourse where tid=#{integer} and cid=#{cid}
+</select>
+
+<select id="getAllDistinctBycid" parameterType="java.lang.Integer" resultType="com.cn.bean.Courseteacher">
+  select distinct bid,tid,tname,classname from teachercourse where cid=#{id} order by tid
+</select>
+
+
+<update id="Update">
+update teachercourse set tname=#{tname} where tid=#{id}
+</update>
+
+</mapper>

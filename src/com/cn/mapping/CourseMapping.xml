@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.CourseMapping">
+    
+    
+    <select id="getAll" resultType="Course">
+    select * from course
+    </select>
+	
+	<delete id="delete">
+	delete from course where cid=#{id}
+	</delete>
+        
+    <insert id="Addone">
+    insert into course(cname,ctime,cscore,ccode,cintroduce,jibie,xueqi,year)
+    values(#{cname},#{ctim},#{csco},#{ccode},#{cintroduce},#{jibie},#{xueqi},#{year})
+    </insert>
+        
+    <select id="getCourseById" resultType="Course">
+    select  * from course where cid=#{ids}
+    </select>
+    <select id="getNameById" resultType="java.lang.String">
+    select cname from course where cid=#{integer}
+    </select>
+    
+    <select id="getCtimeByCid" resultType="java.lang.Integer">
+    select ctime from course where cid=#{cid}
+    </select>
+    
+    <select id="getCidByyear" resultType="java.lang.Integer">
+    select cid from course where year=#{year} and xueqi=#{xueqi}
+    </select>
+    
+    <select id="getAllByJibie" resultType="com.cn.bean.Course">
+    select * from course where jibie=#{jibie} group by year,xueqi
+    </select>
+    
+    <select id="getAllByYearXueqiJibie" resultType="java.lang.Integer">
+    select cid from course where year=#{string} and xueqi=#{string2} and jibie=#{jibie}
+    </select>
+    
+    <select id="getAllNodistinc" resultType="com.cn.bean.Course">
+    select * from course group by year,xueqi
+    </select>
+    
+    <select id="getDistinctYear" resultType="java.lang.String">
+    select distinct year from course 
+    </select>
+    
+    <select id="getAllByYearAndXueqi" resultType="Course">
+    select * from course where year=#{nian} and xueqi=#{xueqi}
+    </select>
+    
+    <select id="getCidByCode" resultType="java.lang.Integer">
+    select cid from course where ccode=#{ccode}
+    </select>
+    
+    <select id="getJIbieBycid" resultType="java.lang.String">
+    select jibie from course where cid=#{cid}
+    </select>
+    
+	</mapper>

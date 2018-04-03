@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.TeacherMapping">
+	<select id="List" resultType="com.cn.bean.Teacher">
+	select * from teacher order by id
+	</select>
+	
+	<insert id="addOne">
+	insert into teacher (tname,email,birth,headads,headname,workcall,county,province,city,password,telphone,tcode,tsex,ident)
+	 values (#{tname},#{email},#{birth},#{headads},#{headname},#{workcall},#{county},#{province},#{city},#{password},#{telphone},#{tcode},#{tsex},#{ident})
+	</insert>
+	
+	
+	<delete id="delete">
+	delete from teacher where id=#{id} 
+	</delete>
+	
+	<update id="Updates">
+	update teacher set tname=#{tname},email=#{email},
+	workcall=#{workcall},birth=#{birth},telphone=#{telphone}
+	where id=#{id}
+	</update>
+	
+	<select id="getTeacherById" resultType="com.cn.bean.Teacher">
+	select * from teacher where id=#{integer}
+	</select>
+	
+	<select id="getIdByNameAndPass" resultType="java.lang.Integer">
+	select id from teacher where(tcode=#{tcode} and password=#{tpass}) 
+	</select>
+	
+	<select id="getNameBycode" resultType="java.lang.String">
+	select tname from teacher where tcode=#{tcode}
+	</select>
+	
+	<select id="getSexById" resultType="java.lang.String">
+	select tsex from teacher where id=#{id}
+	</select>
+	<select id="getProvince" resultType="java.lang.String">
+	select province from teacher where id=#{id}
+	</select>
+	
+	<select id="getCountyById" resultType="java.lang.String">
+	select county from teacher where id=#{id}
+	</select>
+	
+	<select id="getCity" resultType="java.lang.String">
+     select city from teacher where id=#{id}
+	</select>
+	
+	<select id="getBirthById" resultType="java.util.Date">
+	select birth from teacher where id=#{id}
+	</select>
+	
+	<select id="getEmailById" resultType="java.lang.String">
+	select email from teacher where id=#{id}
+	</select>
+	
+	<select id="getPhoneById" resultType="java.lang.String">
+	select telphone from teacher where id=#{id}
+	</select>
+	
+	<select id="getWorkcallById" resultType="java.lang.String">
+	select workcall from teacher where id=#{id}
+	</select>
+	
+	<select id="getHeadById" resultType="java.lang.String">
+	select headname from teacher where id=#{id}
+	</select>
+	
+	<select id="getPassswordById" resultType="java.lang.String">
+	select password from teacher where id=#{id}
+	</select>
+	<select id="getCodeById" resultType="java.lang.String">
+	select tcode from teacher where id=#{id}
+	</select>
+	
+	<select id="getnameById" resultType="java.lang.String">
+	select tname from teacher where id=#{id} 
+	</select>
+	<select id="getNameBycodes" resultType="java.lang.String">
+	select tname from teacher where tcode=#{tcode}
+	</select>
+	<select id="getIdBycode" resultType="java.lang.Integer">
+	select id from teacher where tcode=#{daoyuan}
+	</select>
+	
+	<!-- 更新密码 -->
+	<update id="UpdatePassById">
+	update teacher set password=#{newpass} where id=#{id}
+	</update>
+	
+	<select id="getTeacherByCondition" resultType="com.cn.bean.Teacher" parameterType="java.lang.String">
+	select * from teacher where tname like "%${content}%" or tcode = #{content} 
+	</select>
+	
+	<select id="getIdByidentCode" resultType="java.lang.Integer">
+	select id from teacher where tcode=#{scode} and ident=#{ident}
+	</select>
+	</mapper>

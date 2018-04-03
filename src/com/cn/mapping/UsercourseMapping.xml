@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+	<mapper namespace="com.cn.mapping.UsercourseMapping">
+    <resultMap type="com.cn.bean.Usercourse" id="UserCourses">
+    <id column="id" property="id"/>
+    <result column="cid" property="cid"/>
+    <result column="nian" property="nian"/>
+    <result column="xueqi" property="xueqi"/>
+    <result column="uid" property="uid"/>
+    <result column="score" property="score"/>
+    <result column="dateup" property="date"/>
+    <result column="uname" property="uname"/>
+    <result column="cname" property="cname"/>
+    <result column="ctime" property="ctime"/>
+    <result column="bid" property="bid"/>
+    <association property="course" javaType="com.cn.bean.Course">
+    <result column="cname" property="cname"/>
+    </association>
+    </resultMap>
+    
+
+
+    <insert id="insertScore">
+    insert into usercourse(cid,uid,score,dateup,uname,cname,ctime,bid,nian,xueqi) 
+    values(#{cid},#{uid},#{score},now(),#{uname},#{cname},#{ctime},#{bid},#{nian},#{xueqi}) 
+    </insert>
+    
+    <select id="getCidByScode" resultType="java.lang.Integer">
+    select cid from usercourse where uid=#{scode}
+    </select>
+    
+    <select id="getAllByScode" resultType="Usercourse">
+       select * from usercourse where uid=#{scode}
+    </select>
+    
+    <select id="getAll" resultType="Usercourse">
+    select * from usercourse
+    </select>
+    <select id="GetScoresByBid" statementType="CALLABLE" 
+    resultType="java.util.LinkedHashMap">
+    {
+       call call3(#{classid,jdbcType=INTEGER,mode=IN})
+    }
+    </select>
+    
+   <select id="GetScoresByBidAndXueqi" statementType="CALLABLE" 
+    resultType="java.util.LinkedHashMap">
+    {
+       call call4(#{classid,jdbcType=INTEGER,mode=IN},#{string,jdbcType=VARCHAR,mode=IN},
+       #{string2,jdbcType=VARCHAR,mode=IN})
+    }
+    </select>
+    
+    
+    <select id="getAllByuidAndXueqi" resultType="Usercourse">
+    select * from usercourse where uid=#{scode} and nian=#{nian} and xueqi=#{xuedu}
+    </select>
+    
+    <select id="getIdByXueqiAndNian" resultType="java.lang.Integer">
+       select id from usercourse where xueqi=#{xueqi} and nian=#{nian} and bid=#{bid}
+       and cid=#{cid}
+    </select>
+    
+    
+    <select id="getCnameByCidBid" resultType="java.lang.String">
+    select distinct cname from usercourse where cid=#{id} and bid=#{bid}
+    </select>
+    
+    <update id="updateBycode">
+    update usercourse set uname=#{name} where uid=#{scode}
+    </update>
+    
+    
+    <select id="getScoreByCidBid" resultType="Usercourse">
+    select * from usercourse where bid=#{bid} and cid=#{cid} order by uid asc
+    </select>
+    
+    <delete id="deleteBycid">
+    delete  from usercourse where cid=#{id}
+    </delete>
+    
+    <select id="getAllBycid" resultType="com.cn.bean.Usercourse">
+    select * from usercourse where cid = #{cid}
+    </select>
+    
+    <select id="getTotalnumberBycidbid" resultType="java.lang.Integer">
+    select count(id) from usercourse where bid=#{bid} and cid=#{cid}
+    </select>
+    
+	</mapper>

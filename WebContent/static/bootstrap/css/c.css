@@ -1,0 +1,145 @@
+@charset "UTF-8";
+.calendar{
+	
+	 margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.calendarShow {
+    position: absolute;
+    height: auto;
+    z-index: 85;
+}
+
+.calendarShow a {
+    text-decoration: none;
+}
+
+.calendarWrap {
+    width: 400px;
+    padding: 0 20px;
+    background: #fff;
+    border: 1px solid #aaa;
+    border-radius: 5px;
+    -webkit-box-shadow: 0 0 5px #000;
+    -moz-box-shadow: 0 0 5px #000;
+    box-shadow: 0 0 5px #000;
+}
+
+.calendarTop {
+    height: 40px;
+    line-height: 40px;
+    margin-top: 6px;
+    padding-bottom: 6px;
+    width: 100%;
+    text-align: center;
+    border-bottom: 1px dashed #ddd;
+}
+
+.calendarTop a {
+    float: left;
+    width: 40px;
+}
+
+.calendarTop a:hover {
+    background: #DDDDDD;
+    color: #000;
+}
+
+.calendarTop label {
+    float: left;
+    width: 140px;
+}
+
+.year {
+    float: left;
+    width: 50%;
+    height: 40px;
+    line-height: 43px;
+    font-size: 18px;
+}
+
+.month {
+    float: left;
+    width: 40%;
+    text-align: right;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.dayList {
+    width: 100%;
+    border: 0 none;
+    width: 100%;
+    text-align: center;
+    margin: 6px 0 20px;
+}
+
+.dayList td {
+    height: 25px;
+    line-height: 25px;
+    border: 0 none;
+    cursor: pointer;
+    color: #999;
+}
+
+.dayList td:hover {
+    background: #3187ff;
+    color: #fff;
+}
+
+td.curMonFlag {
+    color: #000;
+}
+
+td.currentDay {
+    background: #3187ff;
+    color: #fff;
+}
+
+.timeWrap {
+    height: 30px;
+    margin-bottom: 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+.timeWrap label {
+    display: inline-block;
+    height: 30px;
+    line-height: 30px;
+}
+
+.timeInput {
+    display: inline-block;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    border: 0 none;
+    border-bottom: 1px solid #333333;
+    text-align: center;
+}
+
+.timeInput:hover, .timeInput:focus {
+    border-bottom: 3px solid #3187ff;
+}
+
+/*button按钮默认样式规则*/
+.calendarSure {
+    line-height: 35px;
+    float: right;
+    border: none;
+    background-color: transparent;
+    vertical-align: middle;
+    color: #3187ff;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+/*button按钮悬浮样式规则*/
+.calendarSure:hover {
+    text-decoration: underline;
+}
+
+
